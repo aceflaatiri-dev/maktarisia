@@ -2,20 +2,20 @@
   "name": "maktarisia",
   "version": "1.0.0",
   "description": "MERN Stack E-Commerce Project",
-  "main": "server.js",
+  "main": "backend/server.js",
   "type": "module",
   "scripts": {
-"backend": "nodemon server.js",
-  "frontend": "npm run dev --prefix frontend",
-  "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
-  "start": "node server.js",
-  "data:import": "node seeder.js -i",
-  "data:destroy": "node seeder.js -d"
+    "start": "node backend/server.js",
+    "backend": "nodemon backend/server.js",
+    "frontend": "npm run dev --prefix frontend",
+    "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "data:import": "node backend/seeder.js -i",
+    "data:destroy": "node backend/seeder.js -d"
   },
   "engines": {
     "node": "20.x"
   },
-  "keywords": [],
   "author": "Himalaya & Alok",
   "license": "ISC",
   "dependencies": {
@@ -33,13 +33,9 @@
     "mongoose": "^8.13.2",
     "morgan": "^1.10.0",
     "multer": "1.4.5-lts.1",
-    "nodemon": "^3.1.10",
     "readable-stream": "^4.7.0"
   },
-  "resolutions": {
-    "gopd": "^1.0.1"
-  },
   "devDependencies": {
-    "npm-force-resolutions": "^0.0.10"
+    "nodemon": "^3.1.10"
   }
 }

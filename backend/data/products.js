@@ -1,0 +1,48 @@
+const products = [
+  {
+    name: "iPhone 16",
+    image: "/uploads/iphone16.jpg",
+    brand: "Apple",
+    quantity: 10,
+    description: "The latest iPhone with amazing features.",
+    price: 999.99,
+    countInStock: 5,
+    rating: 4.5,
+    numReviews: 10,
+  },
+  {
+    name: "MacBook Pro",
+    image: "/uploads/MacBookPro.jpg",
+    brand: "Apple",
+    quantity: 5,
+    description: "Powerful laptop for developers.",
+    price: 1999.99,
+    countInStock: 3,
+    rating: 4.8,
+    numReviews: 8,
+  },
+  {
+    name: "Nike Air Max",
+    image: "/uploads/nike.jpg",
+    brand: "Nike",
+    quantity: 20,
+    description: "Comfortable and stylish sneakers.",
+    price: 149.99,
+    countInStock: 10,
+    rating: 4.2,
+    numReviews: 15,
+  },
+  {
+    name: "The Alchemist",
+    image: "/uploads/alchemist.jpg",
+    brand: "Paulo Coelho",
+    quantity: 30,
+    description: "A classic motivational book.",
+    price: 19.99,
+    countInStock: 20,
+    rating: 4.7,
+    numReviews: 50,
+  },
+];
+
+export default products;

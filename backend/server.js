@@ -23,10 +23,21 @@ const app = express();
 
 // --- MIDDLEWARES ---
 
-// CORS: Allows your Vite frontend to talk to this backend
+// Dynamic CORS: Allows localhost for dev and your Netlify URL for production
+const allowedOrigins = [
+  "http://localhost:5173",
+  "maktarisia.netlify.app" // Update this after you deploy to Netlify
+];
+
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
@@ -34,7 +45,10 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(morgan("dev")); // Logs requests to the console for easier debugging
+
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
 
 // --- ROUTES ---
 app.use("/api/users", userRoutes);
@@ -50,9 +64,13 @@ app.get("/api/config/paypal", (req, res) => {
 
 // --- STATIC FILES (Images) ---
 const __dirname = path.resolve();
-// Use path.join to ensure the path is correctly formatted for Windows/Linux
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
+// Simple check for backend health
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
+
 app.listen(port, () =>
-  console.log(`🚀 Server running on port: http://localhost:${port}`)
+  console.log(`🚀 Server running in ${process.env.NODE_ENV} mode on port: ${port}`)
 );

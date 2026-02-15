@@ -63,10 +63,15 @@ app.get("/api/config/paypal", (req, res) => {
 });
 
 // --- STATIC FILES (Images) ---
+// --- STATIC FILES (Images) ---
 const __dirname = path.resolve();
-// This ensures it looks inside the backend folder even when running on Render
-app.use("/uploads", express.static(path.join(__dirname, "backend/uploads")));
-// Simple check for backend health
+
+// This approach is more robust for Render's file structure
+const uploadsPath = path.join(__dirname, "backend", "uploads");
+app.use("/uploads", express.static(uploadsPath));
+
+// Log the path to Render's console so we can see where it's looking
+console.log("Serving images from:", uploadsPath);
 app.get("/", (req, res) => {
   res.send("API is running...");
 });

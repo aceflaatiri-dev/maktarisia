@@ -26,7 +26,7 @@ const app = express();
 // Dynamic CORS: Allows localhost for dev and your Netlify URL for production
 const allowedOrigins = [
   "http://localhost:5173",
-  "maktarisia.netlify.app" // Update this after you deploy to Netlify
+  "https://maktarisia.netlify.app" // Update this after you deploy to Netlify
 ];
 
 app.use(

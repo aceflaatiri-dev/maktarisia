@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import HeartIcon from "./HeartIcon";
+import { BASE_URL } from "../../redux/constants"; // 1. Add this import
 
 const SmallProduct = ({ product }) => {
   return (
@@ -12,7 +13,8 @@ const SmallProduct = ({ product }) => {
         
         <Link to={`/product/${product._id}`} className="w-full h-full z-10">
           <img
-            src={product.image}
+            /* 2. Update the src with BASE_URL */
+            src={BASE_URL + product.image}
             alt={product.name}
             className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
             loading="lazy"

@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FaTrash, FaArrowLeft, FaShoppingCart } from "react-icons/fa";
 import { addToCart, removeFromCart } from "../redux/features/cart/cartSlice";
+import { BASE_URL } from "../redux/constants"; // 1. Added BASE_URL import
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -60,7 +61,7 @@ const Cart = () => {
                 >
                   <div className="h-24 w-24 bg-[#0f172a] rounded-2xl border border-gray-800 p-2 overflow-hidden flex-shrink-0">
                     <img
-                      src={item.image}
+                      src={BASE_URL + item.image} // 2. Updated with BASE_URL
                       alt={item.name}
                       className="h-full w-full object-contain group-hover:scale-110 transition-transform duration-500"
                     />

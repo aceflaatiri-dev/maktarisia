@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 import { toast } from "react-toastify";
 import HeartIcon from "./HeartIcon";
+import { BASE_URL } from "../../redux/constants"; // 1. Add this import
 
 const ProductCard = ({ p }) => {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const ProductCard = ({ p }) => {
         <div className="relative mb-6 flex justify-center items-center h-[200px]">
           <img
             className="w-full h-full object-contain transform -rotate-6 transition-transform group-hover:rotate-0 duration-500 z-10"
-            src={p?.image}
+            src={BASE_URL + p?.image} // 2. Add BASE_URL here
             alt={p?.name}
           />
           
@@ -44,7 +45,6 @@ const ProductCard = ({ p }) => {
       {/* Product Details */}
       <div className="p-2">
         <div className="flex justify-between items-center mb-2">
-          {/* FIXED: Removed stray 'section' text here */}
           <h5 className="text-[#22c55e] text-xl font-black tracking-tight">
             {p?.name}
           </h5>
@@ -62,7 +62,6 @@ const ProductCard = ({ p }) => {
             Access Data
           </Link>
 
-          {/* ADDED: addToCartHandler function call */}
           <button
             onClick={() => addToCartHandler(p, 1)}
             className="p-4 bg-[#22c55e] rounded-2xl text-black hover:bg-[#4ade80] transition-colors shadow-[0_0_15px_rgba(34,197,94,0.3)] active:scale-90"

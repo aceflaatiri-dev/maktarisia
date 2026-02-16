@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import HeartIcon from "./HeartIcon";
+import { BASE_URL } from "../redux/constants"; // Add this import
 
 const Product = ({ product }) => {
   return (
@@ -12,25 +13,24 @@ const Product = ({ product }) => {
         <div className="absolute inset-0 bg-gradient-to-t from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
         <img
-          src={product.image}
+          /* Concatenate BASE_URL to the image path */
+          src={BASE_URL + product.image} 
           alt={product.name}
           loading="lazy"
           className="w-full h-full object-contain p-8 transform transition-transform duration-700 group-hover:scale-110"
         />
         
-        {/* Top Overlay: Heart Icon (Cleanly integrated) */}
+        {/* ... (rest of your component remains the same) ... */}
         <div className="absolute top-0 right-0 z-20">
           <HeartIcon product={product} />
         </div>
 
-        {/* Brand Tag - Top Left */}
         <div className="absolute top-4 left-4">
           <span className="bg-[#0f172a]/80 backdrop-blur-md text-[8px] font-black text-green-500/80 px-2 py-1 rounded-md border border-green-500/20 uppercase tracking-[0.2em]">
             {product.brand || "Maktarisia"}
           </span>
         </div>
 
-        {/* Price Badge - Floating Style */}
         <div className="absolute bottom-4 left-4 translate-y-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
            <div className="bg-white text-black px-3 py-1.5 rounded-xl text-xs font-black shadow-2xl">
              ${product.price}
@@ -38,7 +38,6 @@ const Product = ({ product }) => {
         </div>
       </div>
 
-      {/* --- Information & Control Hub --- */}
       <div className="flex flex-col flex-grow px-1">
         <div className="mb-4">
           <p className="text-gray-500 text-[9px] uppercase tracking-[0.3em] font-bold mb-1">
@@ -51,7 +50,6 @@ const Product = ({ product }) => {
           </Link>
         </div>
 
-        {/* Footer: Price & Quick View */}
         <div className="mt-auto pt-4 border-t border-gray-800/50 flex items-center justify-between">
           <span className="text-white font-black text-lg tracking-tighter group-hover:text-green-500 transition-colors">
             ${product.price}

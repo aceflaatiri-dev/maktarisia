@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useGetTopProductsQuery } from "../../redux/api/productApiSlice";
 import Message from "../../components/Message";
 import Slider from "react-slick";
+import { BASE_URL } from "../../redux/constants"; // 1. Added import
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -51,7 +52,8 @@ const ProductCarousel = () => {
               <div className="w-full md:w-1/2 h-full flex justify-center items-center p-12 relative z-10">
                 <Link to={`/product/${_id}`} className="w-full h-full flex justify-center perspective-1000">
                   <img
-                    src={image}
+                    /* 2. Added BASE_URL to the src */
+                    src={BASE_URL + image}
                     alt={name}
                     className="w-full h-full max-h-[350px] object-contain drop-shadow-[0_35px_60px_rgba(0,0,0,0.6)] transform transition-all duration-1000 group-hover:scale-110 group-hover:rotate-3"
                   />

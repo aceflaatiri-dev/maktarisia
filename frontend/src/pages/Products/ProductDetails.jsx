@@ -21,6 +21,7 @@ import HeartIcon from "./HeartIcon";
 import Ratings from "./Ratings";
 import ProductTabs from "./ProductTabs";
 import { addToCart } from "../../redux/features/cart/cartSlice";
+import { BASE_URL } from "../../redux/constants"; // IMPORTED BASE_URL
 
 const ProductDetails = () => {
   const { id: productId } = useParams();
@@ -86,7 +87,7 @@ const ProductDetails = () => {
               <div className="absolute inset-0 bg-gradient-to-tr from-green-500/5 to-transparent opacity-50"></div>
               
               <img 
-                src={product.image} 
+                src={BASE_URL + product.image} // UPDATED TO USE BASE_URL
                 alt={product.name} 
                 className="w-full max-h-[500px] object-contain drop-shadow-[0_20px_60px_rgba(0,0,0,0.8)] z-10 transform group-hover:scale-105 transition-transform duration-700" 
               />

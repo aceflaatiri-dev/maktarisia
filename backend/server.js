@@ -59,20 +59,28 @@ app.get("/api/config/paypal", (req, res) => {
   res.send({ clientId: process.env.PAYPAL_CLIENT_ID });
 });
 
-// --- STATIC FILES (Images) ---
+// --- STATIC FILES (The Ultimate Fix) ---
 const __dirname = path.resolve();
 
-// This serves the 'uploads' folder regardless of whether it's in root or /backend
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-app.use("/uploads", express.static(path.join(__dirname, "backend", "uploads")));
+// Logic: If we are already in the 'backend' folder, serve 'uploads'. 
+// If we are in the 'root', serve 'backend/uploads'.
+const isInsideBackend = __dirname.endsWith("backend");
+const uploadsPath = isInsideBackend 
+  ? path.join(__dirname, "uploads") 
+  : path.join(__dirname, "backend", "uploads");
 
-// Extra fallback for production environments
-app.use("/backend/uploads", express.static(path.join(__dirname, "backend", "uploads")));
+app.use("/uploads", express.static(uploadsPath));
+
+// Debugging log for Render Console
+console.log("-----------------------------------------");
+console.log("Server Dir:", __dirname);
+console.log("Looking for uploads at:", uploadsPath);
+console.log("-----------------------------------------");
 
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
 
 app.listen(port, () =>
-  console.log(`🚀 Server running in ${process.env.NODE_ENV} mode on port: ${port}`)
+  console.log(`🚀 Server running on port: ${port}`)
 );

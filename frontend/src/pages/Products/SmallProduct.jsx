@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import HeartIcon from "./HeartIcon";
-import { BASE_URL } from "../../redux/constants"; // 1. Add this import
+import { BASE_URL } from "../../redux/constants";
 
 const SmallProduct = ({ product }) => {
   return (

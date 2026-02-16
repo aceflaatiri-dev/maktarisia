@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FaTrash, FaArrowLeft, FaShoppingCart } from "react-icons/fa";
 import { addToCart, removeFromCart } from "../redux/features/cart/cartSlice";
-import { BASE_URL } from "../redux/constants"; // 1. Added BASE_URL import
+import { BASE_URL } from "../redux/constants";
 
 const Cart = () => {
   const navigate = useNavigate();

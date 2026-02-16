@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useGetTopProductsQuery } from "../../redux/api/productApiSlice";
 import Message from "../../components/Message";
 import Slider from "react-slick";
-import { BASE_URL } from "../../redux/constants"; // 1. Added import
+import { BASE_URL } from "../../redux/constants";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";

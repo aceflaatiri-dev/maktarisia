@@ -1,5 +1,5 @@
-// Use the Environment Variable from Netlify/Vite
-export const BASE_URL = import.meta.env.VITE_API_URL || ""; 
+// Hardcode the Render URL so Netlify always knows where the images are
+export const BASE_URL = "https://maktarisia-backend.onrender.com"; 
 
 export const USERS_URL = `${BASE_URL}/api/users`;
 export const CATEGORY_URL = `${BASE_URL}/api/category`;

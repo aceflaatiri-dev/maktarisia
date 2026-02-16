@@ -22,11 +22,9 @@ connectDB();
 const app = express();
 
 // --- MIDDLEWARES ---
-
-// Dynamic CORS: Allows localhost for dev and your Netlify URL for production
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://maktarisia.netlify.app" // Update this after you deploy to Netlify
+  "https://maktarisia.netlify.app" 
 ];
 
 app.use(
@@ -57,21 +55,20 @@ app.use("/api/products", productRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/orders", orderRoutes);
 
-// PayPal Configuration Route
 app.get("/api/config/paypal", (req, res) => {
   res.send({ clientId: process.env.PAYPAL_CLIENT_ID });
 });
 
 // --- STATIC FILES (Images) ---
-// --- STATIC FILES (Images) ---
 const __dirname = path.resolve();
 
-// This approach is more robust for Render's file structure
-const uploadsPath = path.join(__dirname, "backend", "uploads");
-app.use("/uploads", express.static(uploadsPath));
+// This serves the 'uploads' folder regardless of whether it's in root or /backend
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use("/uploads", express.static(path.join(__dirname, "backend", "uploads")));
 
-// Log the path to Render's console so we can see where it's looking
-console.log("Serving images from:", uploadsPath);
+// Extra fallback for production environments
+app.use("/backend/uploads", express.static(path.join(__dirname, "backend", "uploads")));
+
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
